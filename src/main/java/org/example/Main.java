@@ -21,18 +21,21 @@ Ni har helt fria tyglar med hur ni löser det här pusslet, ni väljer hur det s
 ##################################################################################### */
 
 import org.example.HackathonController.HackathonConfiguration;
+import org.example.Model.Route;
 import org.example.Service.RouteService;
+import org.example.config.ParseConfiguration;
 
-
-
+import java.io.IOException;
 public class Main {
+    public static void main(String[] args) throws IOException {
+        runApp();
 
-
-    public static void main(String[] args)  {
-        HackathonConfiguration hackathonConfiguration = new HackathonConfiguration();
-        RouteService routeService = new RouteService(hackathonConfiguration);
-
-        routeService.run();
+    }
+    private static void runApp() throws IOException {
+        ParseConfiguration config = new ParseConfiguration();
+        RouteService service = new  RouteService(config);
+        HackathonConfiguration hackathonConfiguration = new HackathonConfiguration(service);
+        hackathonConfiguration.getRoutes();
     }
 
 }
